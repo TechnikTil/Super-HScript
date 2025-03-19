@@ -1,0 +1,4 @@
+-D hscriptPos
+-lib hscript
+--macro addGlobalMetadata('', '@:build(hscript.macros.PackageMacro.buildAll())', true, true, false)
+--macro addMetadata('@:build(hscript.macros.ParserMacro.addCustomTokens())', 'hscript.Parser.Token')
