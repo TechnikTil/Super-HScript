@@ -13,7 +13,6 @@ Because it's an add-on, it does not overwrite the original classes' functionalit
   - [Null safety](#null-safety)
   - [Classes and OOP](#classes-and-oop)
   - [Type blacklisting (Experimental)](#type-blacklisting-experimental)
-  
 - [Setup](#setup)
 - [Usage](#usage)
 - [Contributing](#contributing)
