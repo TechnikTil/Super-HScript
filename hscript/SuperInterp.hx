@@ -5,7 +5,6 @@ import haxe.ds.Either;
 import hscript.Expr;
 import hscript.AbstractHScriptClass;
 import hscript.HScriptClass;
-import hscript.macros.PackageMacro;
 
 using StringTools;
 
@@ -13,8 +12,6 @@ using StringTools;
 @:allow(AbstractHScriptClass)
 class SuperInterp extends ReInterp
 {
-	private static final compileClassList:Array<String> = PackageMacro.getClassList();
-
 	public static var packages:Map<String, AbstractHScriptClass> = [];
 
 	private var _proxy:AbstractHScriptClass;

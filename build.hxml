@@ -6,7 +6,5 @@
 -D no-invalid-expression-warnings
 -D hscriptPos
 
-
---macro addGlobalMetadata('', '@:build(hscript.macros.PackageMacro.buildAll())', true, true, false)
 --macro addGlobalMetadata('hscript', '@:build(hscript.macros.ParserMacro.buildAll())', false, true, false)
 --interp

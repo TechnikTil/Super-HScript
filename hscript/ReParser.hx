@@ -172,15 +172,15 @@ class ReParser extends Parser
 				esc = false;
 				switch( c ) {
 				case 'n'.code:
-					parts[curI] += '\n'.code;
+					parts[curI] += '\n';
 				case 'r'.code:
-					parts[curI] += '\r'.code;
+					parts[curI] += '\r';
 				case 't'.code:
-					parts[curI] += '\t'.code;
+					parts[curI] += '\t';
 				case "'".code, '"'.code, '\\'.code:
-					parts[curI] += c;
+					parts[curI] += String.fromCharCode(c);
 				case '/'.code: if( allowJSON ) 
-					parts[curI] += c; else invalidChar(c);
+					parts[curI] += String.fromCharCode(c); else invalidChar(c);
 				case "u".code:
 					if( !allowJSON ) invalidChar(c);
 					var k = 0;
@@ -221,6 +221,8 @@ class ReParser extends Parser
 							case TBrOpen:
 								curI = parts.push(parseExpr());
 								ensure(TBrClose);
+								parts[curI] ??= "";
+								//this.char = input.charCodeAt(readPos);
 							case TId(s):
 								curI = parts.push(mk(EIdent(s)));
 							case TApostr:

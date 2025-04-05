@@ -3,8 +3,8 @@
 	"url" : "https://github.com/Davvex87/Super-HScript/",
 	"license": "MIT",
 	"description": "An extension to the original HaxeFoundation's HScript library for parsing and evaluating Haxe expressions at runtime.",
-	"version": "1.0.0",
-	"releasenote": "Initial release",
+	"version": "1.0.2",
+	"releasenote": "Removed unnecessary package macro",
 	"contributors": ["Davvex87"],
 	"dependencies": {
 		"hscript": ""
