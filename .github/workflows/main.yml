@@ -18,6 +18,7 @@ jobs:
     - name: Install haxelib dependencies
       run: |
         haxelib install hscript
+        haxelib install utest
     - name: Test with Interp
       run: |
         haxe build.hxml
