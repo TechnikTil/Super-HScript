@@ -5,6 +5,7 @@
 -D no-deprecation-warnings
 -D no-invalid-expression-warnings
 -D hscriptPos
+-D hscript_extraExprs
 
 --macro addGlobalMetadata('hscript', '@:build(hscript.macros.ParserMacro.buildAll())', false, true, false)
 --interp

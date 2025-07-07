@@ -209,6 +209,7 @@ class SuperInterp extends ReInterp
 					if (blacklist.contains(c))
 						error(ECustom('Blacklisted import $c'));
 				}
+				return null;
 			case _:
 		}
 		

@@ -1,4 +1,5 @@
 -D hscriptPos
+-D hscript_extraExprs
 -lib hscript
 
 --macro addGlobalMetadata('hscript', '@:build(hscript.macros.ParserMacro.buildAll())', false, true, false)
