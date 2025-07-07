@@ -12,8 +12,26 @@ class SuperParser extends ReParser
 		switch(id)
 		{
 			case "import":
-				var path = parsePath();
-				return null;
+				var path = [getIdent()];
+				var star = false;
+				while( true ) {
+					var t = token();
+					if( t != TDot ) {
+						push(t);
+						break;
+					}
+					t = token();
+					switch( t ) {
+					case TId(id):
+						path.push(id);
+					case TOp("*"):
+						star = true;
+					default:
+						unexpected(t);
+					}
+				}
+				ensure(TSemicolon);
+				return mk(EImport(path, star));
 			case "package":
 				if (maybe(TSemicolon))
 					return null;
@@ -69,7 +87,7 @@ class SuperParser extends ReParser
 			var path = parsePath();
 			ensure(TSemicolon);
 			return DPackage(path);
-		case "import":
+		/*case "import":
 			var path = [getIdent()];
 			var star = false;
 			while( true ) {
@@ -89,7 +107,9 @@ class SuperParser extends ReParser
 				}
 			}
 			ensure(TSemicolon);
-			return DImport(path, star);
+			return DImport(path, star);*/
+		case "import":
+			return null;
 		case "class":
 			var name = getIdent();
 			var params = parseParams();
@@ -161,5 +181,14 @@ class SuperParser extends ReParser
 
 		push(tk);
 		return super.parseExpr();
+	}
+
+	override function isBlock(e) {
+		return switch( expr(e) ) {
+			case EImport(path, everything):
+				true;
+			default:
+				super.isBlock(e);
+		}
 	}
 }

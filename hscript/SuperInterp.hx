@@ -46,7 +46,7 @@ class SuperInterp extends ReInterp
 
 			switch (d)
 			{
-				case DImport(path, everything):
+				/*case DImport(path, everything):
 					// expr(EImport(path, everything, alias));
 
 					var strPath:String = path.join(".");
@@ -67,7 +67,7 @@ class SuperInterp extends ReInterp
 
 						if (blacklist.contains(c))
 							error(ECustom('Blacklisted import $c'));
-					}
+					}*/
 
 				case DPackage(path):
 
@@ -189,6 +189,26 @@ class SuperInterp extends ReInterp
 				var val =  super.expr(e);
 				if (blacklist.contains(val))
 					error(ECustom('Blacklisted expression $val referenced'));
+			case EImport(path, everything):
+				var strPath:String = path.join(".");
+				if (everything)
+				{
+					error(ECustom('Bulk import not yet implemented'));
+				}
+				else
+				{
+					var c:Dynamic = cast(Type.resolveClass(strPath)) ?? cast(Type.resolveEnum(strPath)) ?? null;
+					if (c == null)
+						c = cast({
+							var p:PossibleImport = {c: strPath};
+							p;
+						});
+
+					imports.set(path[path.length-1], c);
+
+					if (blacklist.contains(c))
+						error(ECustom('Blacklisted import $c'));
+				}
 			case _:
 		}
 		

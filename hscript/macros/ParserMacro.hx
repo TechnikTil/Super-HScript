@@ -34,7 +34,6 @@ class ParserMacro
 		{
 			case TEnum(t, params):
 				var e = t.get();
-				if (e.name != "Token")  return fields;
 
 				function makeEnumField(name, kind):Field
 				{
@@ -47,9 +46,24 @@ class ParserMacro
 						pos: Context.currentPos()
 					}
 				}
-				fields.push(
-					makeEnumField("TApostr", FVar(null, null))
-				);
+
+				switch(e.name)
+				{
+					case 'Token':
+						fields.push(
+							makeEnumField("TApostr", FVar(null, null))
+						);
+					case 'ExprDef':
+						var impFunc = macro function(path:Array<String>, ?everything:Bool) {};
+						var fImp = switch (impFunc.expr) {
+							case EFunction(kind, f): f;
+							default: throw "false";
+						}
+						fields.push(
+							makeEnumField("EImport", FFun(fImp))
+						);
+				}
+				
 			case _:
 		}
 
